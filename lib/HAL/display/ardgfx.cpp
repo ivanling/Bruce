@@ -73,6 +73,9 @@ tft_display::tft_display(int16_t _W, int16_t _H) : _height(_H), _width(_W) {
     #endif
     _gfx = new TFT_DISPLAY_DRIVER(TFT_WIDTH, TFT_HEIGHT, bus, 0, true, TFT_RST,
                                   TFT_DSI_INIT, sizeof(TFT_DSI_INIT) / sizeof(lcd_init_cmd_t));
+#elif TFT_DISPLAY_DRIVER_N == 49
+    // Arduino_RGB_Display is handled when using TFT_DATABUS_N == 3; nothing to do here
+    (void)0;
 #elif TFT_DISPLAY_DRIVER_N >= 47 && TFT_DISPLAY_DRIVER_N <= 48
     #if !defined(TFT_RST) || !defined(TFT_WIDTH) || !defined(TFT_HEIGHT)
         #error "Missing Macros definitions of: TFT_RST, TFT_WIDTH, TFT_HEIGHT"

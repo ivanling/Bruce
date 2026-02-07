@@ -106,4 +106,5 @@
         },
         "editor.formatOnType": true,
     },
+    "idf.currentSetup": "C:\\Users\\User\\esp\\v5.4.1\\esp-idf",
 }

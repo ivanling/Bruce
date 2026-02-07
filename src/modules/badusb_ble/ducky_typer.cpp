@@ -501,8 +501,8 @@ void key_input(FS fs, String bad_script, HIDInterface *_hid) {
             } else if (PriCmd->type != DuckyCommandType_Comment) {
                 printTFTBadUSBBLE(Command, bruceConfig.priColor);
                 if (Argument.length() > 0) {
-                    printTFTBadUSBBLE(" " + Argument, (ArgCmd == nullptr ? TFT_WHITE : NULL), true);
-                } else printTFTBadUSBBLE("", NULL, true);
+                    printTFTBadUSBBLE(" " + Argument, (ArgCmd == nullptr ? TFT_WHITE : 0), true);
+                } else printTFTBadUSBBLE("", 0, true);
             } else if (PriCmd->type == DuckyCommandType_Comment) {
                 printTFTBadUSBBLE(Argument, TFT_DARKGREEN, true);
             }

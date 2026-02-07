@@ -124,7 +124,7 @@ class tft_logger;
 #endif
 
 // Set Databus Type for constructor
-#if defined(RGB_PANEL)
+#if defined(RGB_PANEL) || (TFT_DATABUS_N == 3)
     #if !defined(CONFIG_IDF_TARGET_ESP32S3) && !defined(CONFIG_IDF_TARGET_ESP32P4)
         #error "MCU must be ESP32-S3 or ESP32-P4 to use RGB_PANEL"
     #endif
