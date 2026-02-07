@@ -20,6 +20,14 @@ FS *BruceTheme::themeFS(void) {
 bool BruceTheme::openThemeFile(FS *fs, String filepath, bool overwriteConfigSettings) {
 
     if (fs == nullptr) return true;
+    if (filepath.length() == 0) {
+        log_w("THEME: empty theme path");
+        return false;
+    }
+    if (!filepath.startsWith("/")) {
+        log_w("THEME: theme path does not start with '/': %s", filepath.c_str());
+        return false;
+    }
     if (!fs->exists(filepath)) return false;
     File file;
     file = fs->open(filepath, FILE_READ);

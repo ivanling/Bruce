@@ -6,15 +6,13 @@
 #include "freertos/queue.h"
 #include "freertos/semphr.h"
 #include "freertos/task.h"
-static SemaphoreHandle_t tftMutex = NULL;
+static SemaphoreHandle_t tftMutex;
 #define RUN_ON_MUTEX(fn)                                                                                     \
-    if (tftMutex) xSemaphoreTakeRecursive(tftMutex, portMAX_DELAY);                                          \
+    xSemaphoreTakeRecursive(tftMutex, portMAX_DELAY);                                                        \
     fn;                                                                                                      \
-    if (tftMutex) xSemaphoreGiveRecursive(tftMutex);
+    xSemaphoreGiveRecursive(tftMutex);
 
 tft_display::tft_display(int16_t _W, int16_t _H) : _height(_H), _width(_W) {
-    // Initialize the mutex early for thread-safe TFT operations
-    if (!tftMutex) { tftMutex = xSemaphoreCreateRecursiveMutex(); }
     // clang-format off
 #if TFT_DATABUS_N == 3
     #if TFT_DISPLAY_DRIVER_N != 49

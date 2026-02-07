@@ -73,7 +73,11 @@ public:
     bool openThemeFile(FS *fs, String filepath, bool overwriteConfigSettings);
     bool validateImgFile(FS *fs, String filepath);
     String getThemeItemImg(String item) {
-        return themePath.substring(0, themePath.lastIndexOf('/')) + "/" + item;
+        int idx = themePath.lastIndexOf('/');
+        if (idx <= 0) { // no base path available, return item as-is
+            return item;
+        }
+        return themePath.substring(0, idx) + "/" + item;
     };
     void removeTheme(void);
     FS *themeFS(void);
